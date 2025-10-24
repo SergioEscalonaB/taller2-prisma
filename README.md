@@ -1,98 +1,218 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🧠 Taller 2 — Prisma + NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Proyecto desarrollado por **Sergio Escalona** (Ingeniería de Sistemas).  
+Aplicación backend con **NestJS** y **Prisma ORM** para gestionar profesores, salones, alumnos y asistencias.  
+La base de datos está alojada en **Supabase (PostgreSQL)**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Requisitos previos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Asegúrate de tener instalado:
 
-## Project setup
+- [Node.js](https://nodejs.org/) (v18 o superior)  
+- [npm](https://www.npmjs.com/)  
+- [PostgreSQL](https://www.postgresql.org/) o una cuenta en [Supabase](https://supabase.com/)  
+- [NestJS CLI](https://docs.nestjs.com/cli/overview) (`npm i -g @nestjs/cli`)
 
+---
+
+## ⚙️ Instalación del proyecto
+
+Clona este repositorio:
 ```bash
-$ npm install
+git clone https://github.com/SergioEscalonaB/taller2-prisma.git
+cd taller2-prisma
 ```
 
-## Compile and run the project
-
+Instala las dependencias:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
+Genera el cliente de Prisma:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx prisma generate
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## 🔐 Configuración del entorno
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Crea un archivo llamado **`.env`** en la raíz del proyecto con el siguiente contenido:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```env
+DATABASE_URL="postgresql://postgres.ukdgvjoruaazjmymescw:[YOUR_PASSWORD]@aws-1-us-east-2.pooler.supabase.com:5432/postgres"
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+> ⚠️ Reemplaza `[YOUR_PASSWORD]` por tu contraseña real de Supabase.  
+> Este archivo **no debe subirse a GitHub** (ya está protegido por `.gitignore`).
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## 🧩 Migraciones de Prisma
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Ejecuta el siguiente comando para crear las tablas de la base de datos:
+```bash
+npx prisma migrate dev --name init
+```
 
-## Support
+Puedes ver el esquema del modelo en:
+```
+/prisma/schema.prisma
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Y las migraciones generadas en:
+```
+/prisma/migrations/
+```
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 🧠 Estructura del proyecto
 
-## License
+```
+src/
+ ┣ alumnos/
+ ┣ asistencias/
+ ┣ profesores/
+ ┣ salones/
+ ┣ app.module.ts
+ ┣ main.ts
+ ┗ prisma.service.ts
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Cada módulo maneja su propio controlador, servicio y rutas.
+
+---
+
+## ▶️ Ejecución del proyecto
+
+Para iniciar el servidor de desarrollo:
+```bash
+npm run start:dev
+```
+
+La API estará disponible en:
+```
+http://localhost:3000
+```
+
+---
+
+## 🧰 Comandos útiles
+
+| Comando | Descripción |
+|----------|--------------|
+| `npx prisma studio` | Abre la interfaz visual para ver los datos |
+| `npx prisma generate` | Regenera el cliente Prisma |
+| `npx prisma migrate dev` | Aplica migraciones |
+| `npm run start:dev` | Inicia el servidor NestJS |
+
+---
+
+## 📬 Endpoints principales
+
+### 🧑‍🏫 Profesores
+
+**Crear profesor**
+```http
+POST /profesores
+Content-Type: application/json
+
+{
+  "nombre": "Carlos Pérez"
+}
+```
+
+**Obtener todos los profesores**
+```http
+GET /profesores
+```
+
+---
+
+### 🏫 Salones
+
+**Crear salón**
+```http
+POST /salones
+Content-Type: application/json
+
+{
+  "nombre": "Salón A",
+  "profesorId": 1
+}
+```
+
+**Obtener todos los salones**
+```http
+GET /salones
+```
+
+---
+
+### 👨‍🎓 Alumnos
+
+**Crear alumno**
+```http
+POST /alumnos
+Content-Type: application/json
+
+{
+  "nombre": "Ana Gómez",
+  "salonId": 1
+}
+```
+
+**Obtener todos los alumnos**
+```http
+GET /alumnos
+```
+
+---
+
+### 📋 Asistencias
+
+**Registrar asistencia**
+```http
+POST /asistencias
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "fecha": "2025-10-23",
+  "estado": "Presente"
+}
+```
+
+**Obtener todas las asistencias**
+```http
+GET /asistencias
+```
+
+---
+
+## 🧠 Guía de uso paso a paso
+
+1. Clona el repositorio desde GitHub.  
+2. Instala las dependencias con `npm install`.  
+3. Crea tu archivo `.env` con tu conexión a la base de datos.  
+4. Ejecuta `npx prisma migrate dev --name init` para crear las tablas.  
+5. Inicia el servidor con `npm run start:dev`.  
+6. Abre [http://localhost:3000](http://localhost:3000) y prueba los endpoints desde Postman o Insomnia.  
+7. (Opcional) Usa `npx prisma studio` para gestionar visualmente los datos.
+
+---
+
+## 🧾 Notas finales
+
+- Este proyecto usa **NestJS + Prisma + Supabase (PostgreSQL)**.  
+- Las credenciales de conexión deben mantenerse privadas.  
+- El archivo `.env` no debe subirse al repositorio.  
+- Puedes extender este proyecto con autenticación, validación de datos o frontend en el futuro.
+
+---
+
+👨‍💻 Desarrollado por **Sergio Escalona**  
+📘 Ingeniería de Sistemas — Taller 2
