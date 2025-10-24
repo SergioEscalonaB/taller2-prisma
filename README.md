@@ -12,7 +12,7 @@ Asegúrate de tener instalado:
 
 - [Node.js](https://nodejs.org/) (v18 o superior)  
 - [npm](https://www.npmjs.com/)  
-- [PostgreSQL](https://www.postgresql.org/) o una cuenta en [Supabase](https://supabase.com/)  
+- [Supabase](https://supabase.com/)  (crear cuenta gratis)
 - [NestJS CLI](https://docs.nestjs.com/cli/overview) (`npm i -g @nestjs/cli`)
 
 ---
@@ -201,7 +201,6 @@ GET /asistencias
 4. Ejecuta `npx prisma migrate dev --name init` para crear las tablas.  
 5. Inicia el servidor con `npm run start:dev`.  
 6. Abre [http://localhost:3000](http://localhost:3000) y prueba los endpoints desde Postman o Insomnia.  
-7. (Opcional) Usa `npx prisma studio` para gestionar visualmente los datos.
 
 ---
 
